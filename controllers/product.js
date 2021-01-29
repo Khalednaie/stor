@@ -3,11 +3,13 @@ const _ = require('lodash');
 const fs = require('fs');
 const Product = require('../models/product');
 const {errorHandler}=require('../helpers/dberr');
-const product = require('../models/product');
+
 
 
 exports.productById = (req,res,next,id)=>{
-    Product.findById(id).exec((err,product)=>{
+    Product.findById(id)
+    .populate('category')
+    .exec((err,product)=>{
         if(err , !product){
             return res.status(400).json({
                 error : 'Product not found'
@@ -95,19 +97,24 @@ exports.update = (req , res)=>{
       product =_.extend(product ,fields);
 
 
-      if (files.photo.size > 504380){
-         
-        return res.status(400).json({
-              error : 'image should be less than 5mb in size',
-            
-          });
-      }
-      const {name,description,price,category,shipping,quantity} = fields
-      if(!name || !description || !price ||!category ||!shipping ||!quantity){
-        return res.status(400).json({
-            error : 'ALL FIELDS ARE REQUIRED'  
-      });
-    };
+    
+ if (files.photo) {
+            // console.log("FILES PHOTO: ", files.photo);
+            if (files.photo.size > 1000000) {
+                return res.status(400).json({
+                    error: "Image should be less than 1mb in size"
+                });
+            }
+            product.photo.data = fs.readFileSync(files.photo.path);
+            product.photo.contentType = files.photo.type;
+        }
+
+    //   const {name,description,price,category,shipping,quantity} = fields
+    //   if(!name || !description || !price ||!category ||!shipping ||!quantity){
+    //     return res.status(400).json({
+    //         error : 'ALL FIELDS ARE REQUIRED'  
+    //   });
+    // };
       if(files.photo){
           console.log('FILES PHOTO',files.photo)
           product.photo.data = fs.readFileSync(files.photo.path)
@@ -135,9 +142,9 @@ exports.update = (req , res)=>{
 
 
 exports.list = (req,res)=>{
-    let order = req.query.order ? req.query.order :'asc'
-    let sortBy = req.query.sortBy ? req.query.sortBy :'_id'
-    let limit = req.query.limit ? parseInt(req.query.limit) : 6
+    let order = req.query.order ? req.query.order :'asc';
+    let sortBy = req.query.sortBy ? req.query.sortBy :'_id';
+    let limit = req.query.limit ? parseInt(req.query.limit) : 6;
     // console.log('is a product in list',product)
     Product.find()
       .select('-photo')
@@ -251,5 +258,52 @@ exports.photo=(req,res,next)=>{
     };
     next();
 
+};
+
+exports.listSearch = (req,res)=>{
+    // creat query object to hold search value and category value
+    const query = {}
+    // assign search value to query.name
+    if(req.query.search){
+        query.name ={$regex:req.query.search,$options:'i'}
+        // assing category value to category
+        if(req.query.category && req.query.category  !='All'){
+            query.category =req.query.category
+        }
+        // find the product based on query obj whith 2 propertis
+        // search and category
+        Product.find(query,(err , products)=>{
+            if(err){
+                return res.status(400).json({
+                    error : errorHandler(err)
+                })
+            }
+            res.json(products)
+            
+        }).select('-photo')
+    }
+};
+
+
+exports.decreaseQuantity=(req,res,next)=>{
+    let bulkOps = req.body.order.products.map((item)=>{
+        return {
+            updateOne:{
+                filter : {_id:item._id},
+                update : {$inc:{quantity:-item.count,sold:+item.count}}
+            }
+        };
+    });
+    Product.bulkWrite(bulkOps , {} , (error,data)=>{
+        if(error){
+            return res.status(400).json({
+                error : 'error in product inc +-'
+            });
+        }
+        
+        console.log("data in update in Product :",data)
+        next();
+    })
+    
 };
 

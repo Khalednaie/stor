@@ -1,4 +1,7 @@
-const user = require('../models/user');
+const { json } = require('body-parser');
+const { errorHandler } = require('../helpers/dberr');
+const { Order } = require('../models/order');
+// const user = require('../models/user');
 const User = require('../models/user');
 
 exports.userById = (req,res,next,id)=>{
@@ -39,3 +42,49 @@ exports.update=(req,res)=>{
        
         });
 };
+
+exports.addOrderToUser=(req,res,next)=>{
+    let histoty = []
+    req.body.order.products.forEach((item)=>{
+        histoty.push({
+            _id:item._id,
+            name:item.name,
+            description:item.description,
+            category:item.category,
+            quantity:item.conut,
+            transaction_id:req.body.order.transaction_id,
+            amount:req.body.order.amount,
+        })
+    })
+    
+    User.findOneAndUpdate({_id:req.profile._id},
+                          {$push:{histoty:histoty}},
+                          {new:true},
+                          (error,data)=>{
+                            if(error){
+                                return res.status(400),json({
+                                    error:'error in findOne in user.js in controlle'
+                                })
+                            }
+                            next();
+                            // res.json(data);
+                            console.log('data in findOne in user.js in controlle',data);
+                          })
+
+
+}
+
+exports.purchaseHistory=((req,res)=>{
+    Order.find({user:req.profile._id})
+    .populate('user','_id name')
+    .sort('-created')
+    .exec((err,orders)=>{
+        if(err){
+            return res.status(400),json({
+                erroe : errorHandler(err)
+            })
+        }
+        res.json(orders)
+    })
+
+})
