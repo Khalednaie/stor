@@ -6,7 +6,8 @@
   "scripts": {
     "server": "nodemon app.js",
     "client": "cd stor-front && npm start",
-    "full": "concurrently \"nodemon app.js\" \"npm run client\""
+    "full": "concurrently \"nodemon app.js\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix stor-front && npm run build --prefix stor-front "
   },
   "keywords": [],
   "author": "",
