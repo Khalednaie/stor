@@ -10,7 +10,7 @@ const isActive = (history, path) => {
         return { color: "#ffffff" };
     }
 };
-
+ 
 const Menu = ({ history }) => (
     <div>
         <ul className="nav nav-tabs bg-primary">

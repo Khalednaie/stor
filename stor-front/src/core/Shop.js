@@ -10,7 +10,7 @@ import {prices} from './fixedPrices';
 const Shop = ()=>{
     const [myFilters ,setMyFilters] = useState({
         filters:{category:[],price:[]}
-    })
+    }) 
     const [categories,setCategories]=useState([]);
     const [error ,setError]=useState(false);
     const [limit ,setLimit]=useState(6);

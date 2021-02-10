@@ -11,7 +11,7 @@ export const signup = (user)=>{
         body: JSON.stringify(user)
          
       })
-      .then(response => {
+      .then(response => { 
         console.log('res:',response)
         return response.json()
       })

@@ -10,6 +10,6 @@ const ShowImage = ({ item, url }) => (
             style={{ maxHeight: "100%", maxWidth: "100%" }}
         />
     </div>
-);
+); 
 
 export default ShowImage;

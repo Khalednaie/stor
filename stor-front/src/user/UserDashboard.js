@@ -55,7 +55,7 @@ const Dashboard = ()=>{
                <ul className='list-group'>
                    <li className='list-group-item'>
                        {history.map((h,i)=>{
-                           return(
+                           return( 
                                <div key={i}>
                                     <hr />
                                     {h.products.map((p,index)=>{

@@ -13,7 +13,7 @@ const Card = ({
   setRun = f => f,
   run = undefined
   // changeCartSize
-}) => {
+}) => { 
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
 

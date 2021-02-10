@@ -12,7 +12,7 @@ const Signin =()=> {
        redirectToReferrer:false,
 
 
-     })
+     }) 
 
      const {email ,password ,loading , redirectToReferrer,error} =valus
      const {user} = isAuthenticated()

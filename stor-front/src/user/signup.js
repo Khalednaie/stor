@@ -11,7 +11,7 @@ const Signup =()=> {
        error : '',
        success: false
      })
-
+ 
      const {name ,email ,password ,success ,error} =valus
 
 

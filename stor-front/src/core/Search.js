@@ -10,7 +10,7 @@ const Search = () => {
         results: [],
         searched: false
     });
-
+ 
     const { categories, category, search, results, searched } = data;
 
     const loadCategories = () => {

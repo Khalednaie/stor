@@ -67,7 +67,7 @@ const AddCategory = ()=>{
        </div>
     )
 
-
+ 
 return(
 <Layout title='Add a new create category' description={`G'day ${user.name},read to add a new category`}>
     <div className='row'>

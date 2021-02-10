@@ -13,7 +13,7 @@ const ManageProducts=()=>{
                 console.log(data.error)
             } else {
                 setProducts(data)
-            }
+             }
         })
     }
 

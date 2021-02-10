@@ -28,7 +28,7 @@ const getToken = (userId, token) => {
             } else {
                 console.log(data);
                 setData({ clientToken: data.clientToken });
-            }
+            } 
         });
     };
 

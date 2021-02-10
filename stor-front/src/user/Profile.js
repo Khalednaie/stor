@@ -52,7 +52,7 @@ const Profile = ({ match }) => {
                     });
                 }
             }
-        );
+        ); 
     };
 
     const redirectUser = success => {

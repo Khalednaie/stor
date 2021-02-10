@@ -17,7 +17,7 @@ import Profile from './user/Profile';
 import ManageProducts from './admin/ManageProducts'
 import UpdateProducts from './admin/UpdateProduts'
 
-
+ 
 const Routes = ()=>{
     return(
         <BrowserRouter>

@@ -33,7 +33,7 @@ const Home = () => {
     useEffect(() => {
         loadProductsByArrival();
         loadProductsBySell();
-    }, []);
+    }, []); 
 
     return (
         <Layout

@@ -93,7 +93,7 @@ export const updateUser = (user, next) => {
 export const getPurchaseHistory = (userId, token) => {
     return fetch(`${API}/orders/by/user/${userId}`, {
         method: "GET",
-        headers: {
+        headers: { 
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`

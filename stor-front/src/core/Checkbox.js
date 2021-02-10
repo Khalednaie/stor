@@ -12,7 +12,7 @@ const Checkbox = ({categories ,handelFilters}) =>{
         //else pull/take off
         if(currentCategoryId === -1){
             newCheckedCategoryId.push(c)
-        }else {
+        }else { 
             newCheckedCategoryId.splice(currentCategoryId,1)
         }
         console.log(newCheckedCategoryId)

@@ -14,7 +14,7 @@ const Cart = () => {
     }, [run]);
 
     const showItems = items => {
-        return (
+        return ( 
             <div>
                 <h2>Your cart has {`${items.length}`} items</h2>
                 <hr />

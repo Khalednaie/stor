@@ -61,7 +61,7 @@ const AddProduct = () => {
         const value = name === 'photo' ? event.target.files[0] : event.target.value;
         formData.set(name, value);
         setValues({ ...values, [name]: value });
-    };
+    }; 
 
     const clickSubmit = event => {
         event.preventDefault();

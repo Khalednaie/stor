@@ -9,7 +9,7 @@ export const addItem = (item = [], count = 0, next = f => f) => {
             count: 1
         });
 
-        // remove duplicates
+        // remove duplicate s
         // build an Array from new Set and turn it back into array using Array.from
         // so that later we can re-map it
         // new set will only allow unique values in it

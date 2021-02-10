@@ -9,4 +9,4 @@ const AdminRoute = ({component : Component , ...rest})=>(
         <Redirect to={{pathname:'/signin',state:{from : props.location}}}/>
     )} />
 )
-export default AdminRoute;
+export default AdminRoute; 

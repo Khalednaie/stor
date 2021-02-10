@@ -249,7 +249,7 @@ const UpdateProduct = ({ match }) => {
             } else {
                 // populate the state
                 setValues({
-                    // ...values,
+                    // ...values, 
                     name: data.name,
                     description: data.description,
                     price: data.price,
