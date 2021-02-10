@@ -31,7 +31,7 @@ router.post('/product/create/:userId',
                 isAdmin, 
                 create);
 router.get('/product/:productId',read)
-
+ 
 router.delete('/product/:productId/:userId',
                 requireSignin , 
                 isAuth , 

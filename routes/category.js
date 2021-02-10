@@ -36,7 +36,7 @@ router.delete('/category/:categoryId/:userId',
         isAuth ,
         isAdmin,
         remove);
-router.get('/categories',list)
+router.get('/categories',list) 
 
 router.param('categoryId',categoryById)
 

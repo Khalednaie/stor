@@ -4,7 +4,7 @@
  * Get unique error field name
  */
 const uniqueMessage = error => {
-    let output;
+    let output; 
     try {
         let fieldName = error.message.substring(
             error.message.lastIndexOf(".$") + 2,

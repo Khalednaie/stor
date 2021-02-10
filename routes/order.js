@@ -16,6 +16,6 @@ router.get('/order/status-values/:userId',requireSignin,isAuth,isAdmin,getStatus
 router.put('/order/:orderId/status/:userId',requireSignin,isAuth,isAdmin,updatOrderStatus)
 
 
-router.param('userId',userById)
+router.param('userId',userById) 
 router.param('orderId',orderById)
 module.exports = router

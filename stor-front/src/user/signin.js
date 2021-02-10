@@ -5,8 +5,8 @@ import {signin ,authenticate, isAuthenticated} from '../auth/index'
 
 const Signin =()=> {
      const [valus,setValus]=useState({
-       email : 'nonna@gmail.com',
-       password : 'khaled120',
+       email : '',
+       password : '',
        error : '',
        loading: false,
        redirectToReferrer:false,
@@ -92,7 +92,7 @@ const Signin =()=> {
        {showError()}
        {signinForm()}
        {redirectUser()}
-       {JSON.stringify(valus)}
+       {/* {JSON.stringify(valus)} */}
     </Layout>
      </div>
    )

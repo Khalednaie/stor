@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
         default: 0
     },
     histoty:{
-        type :Array,
+        type :Array, 
         default:[]
     }
 },
